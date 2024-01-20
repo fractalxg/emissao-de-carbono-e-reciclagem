@@ -27,3 +27,7 @@
     cursor: pointer;
     color: var(--color-2);
 }
+
+.inner-header-container span {
+    color: var(--color-1)
+}
