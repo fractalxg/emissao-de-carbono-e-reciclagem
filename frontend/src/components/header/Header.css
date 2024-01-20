@@ -1,0 +1,23 @@
+.header-container{
+    height: 80px;
+    width: 100%;
+    background-color: var(--color-1);
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.inner-header-container{
+    justify-content: end;
+    display: flex;
+    gap: 50px;
+    width: 100%;
+    padding-right: 50px;
+}
+
+.inner-header-container p {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--color-2);
+}
