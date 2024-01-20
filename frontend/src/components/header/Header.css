@@ -1,7 +1,7 @@
 .header-container{
     height: 80px;
     width: 100%;
-    background-color: var(--color-1);
+    background-color: transparent;
     position: fixed;
     top: 0;
     display: flex;

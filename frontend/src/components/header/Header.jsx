@@ -5,8 +5,8 @@ const Header = () => {
     <div className="header-container">
       <div className="inner-header-container">
         <p>Energia Sustentável</p>
-        <p>Reciclagem</p>
         <p>Emissão de Carbono</p>
+        <p>Reciclagem</p>
       </div>
     </div>
   );
