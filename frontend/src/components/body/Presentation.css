@@ -1,6 +1,27 @@
-.presentation-container{
-    height: 100vh;
-    background-color: var(--color-1);
-    background-image: url("../../images/BG-01.png");
-	background-size: contain;
+.presentation-container {
+  height: 100vh;
+  /* background-color: var(--color-1);
+    background-image: var(--bg-1);
+	background-size: contain; */
+
+  
+  background-image: radial-gradient(
+    #c4c4c4 1.7000000000000002px,
+    #FFFFFF 1.7000000000000002px
+  );
+  background-color: var(--color-1);
+  background-size: 34px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.presentation-image-content {
+  display: flex;
+  height: 600px;
+}
+
+.presentation-image-content img {
+  width: 150px;
+  height: 570px;
 }

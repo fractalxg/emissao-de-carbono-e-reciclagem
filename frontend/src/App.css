@@ -1,10 +1,13 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Source Code Pro', monospace;
 }
 :root {
   --color-1: #8AF262;
   --color-2: #000000;
+  --bg-1:url("./images/BG-01.png");
+  --bg-2:url("./images/BG-02.png");
 }
 
 .app-container{

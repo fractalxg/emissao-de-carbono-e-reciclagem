@@ -1,13 +1,20 @@
 .header-container{
     height: 80px;
     width: 100%;
-    background-color: transparent;
     position: fixed;
     top: 0;
     display: flex;
     align-items: center;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #ddd;
 }
-
+.header-logo{
+    padding-left: 30px;
+}
+.header-logo img{
+    width: 45px;
+    height: 45px;
+}
 .inner-header-container{
     justify-content: end;
     display: flex;
@@ -17,7 +24,6 @@
 }
 
 .inner-header-container p {
-    font-weight: 600;
     cursor: pointer;
     color: var(--color-2);
 }
