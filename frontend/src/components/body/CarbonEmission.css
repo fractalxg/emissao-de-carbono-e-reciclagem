@@ -1,7 +1,79 @@
-.carbon-emission-container{
-
+.carbon-emission-container {
+  height: 100vh;
+  margin-top: 100px;
 }
 
-.carbon-emission-calculator{
-    padding-top: 80px
+.carbon-emission-header {
+  height: 25vh;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.carbon-emission-bar {
+  width: 50%;
+  height: 100%;
+}
+
+.up-carbon-emission-bar {
+  height: 50%;
+}
+.bottom-carbon-emission-bar {
+  display: flex;
+  height: 50%;
+  border-top: solid 1px #000;
+  margin-left: 60px;
+}
+
+.bottom-carbon-emission-bar span {
+  color: var(--color-1);
+}
+.carbon-emission-image {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+}
+.carbon-emission-image img{
+    width: 280px;
+    height: 290px;
+    border-radius: 50%;
+    border: 7px solid #ddd;
+}
+
+.carbon-emission-calculator {
+  padding-top: 80px;
+  display: flex;
+  justify-content: center;
+  padding-top: 10vh;
+  gap: 20vw;
+}
+
+.carbon-emission-origin-container {
+  display: grid;
+}
+.carbon-emission-destiny-container {
+  display: grid;
+}
+
+.carbon-emission-container label {
+  font-size: 13px;
+  color: #686868;
+}
+
+.carbon-emission-container input {
+  width: 300px;
+  height: 30px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #afafaf;
+}
+
+.carbon-emission-container input:focus {
+  outline: none;
+  border-bottom: 1px solid var(--color-1);
+  transition: 1s;
+}
+
+.carbon-emission-container input:focus::placeholder {
+  color: transparent;
 }
