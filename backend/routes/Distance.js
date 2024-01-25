@@ -13,16 +13,18 @@ router.get("/distance", async (req, res) => {
       units: "metric",
       key: process.env.GC_API_KEY,
     };
-    const response = await axios.post(process.env.GC_DISTANCE_URL, null, { params });
+    const response = await axios.post(process.env.GC_DISTANCE_URL, null, {
+      params,
+    });
 
     const responseData = response.data;
 
     const distanceInformations = {
-        origin:responseData.origin_addresses,
-        destination:responseData.destination_addresses,
-        distance: responseData.rows[0].elements[0].distance.text,
-        duration:responseData.rows[0].elements[0].duration.text
-    }
+      origin: responseData.origin_addresses,
+      destination: responseData.destination_addresses,
+      distance: responseData.rows[0].elements[0].distance.text,
+      duration: responseData.rows[0].elements[0].duration.text,
+    };
 
     res.send(distanceInformations);
   } catch (error) {
