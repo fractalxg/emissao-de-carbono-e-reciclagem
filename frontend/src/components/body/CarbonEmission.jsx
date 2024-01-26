@@ -5,6 +5,9 @@ import { useState } from "react";
 import axios from "axios";
 
 const CarbonEmission = () => {
+  const [originInput, setOriginInput] = useState();
+  const [destinyInput, setDestinyInput] = useState();
+
   const [originCoordinates, setOriginCoordinates] = useState({
     lat: 0,
     lng: 0,
@@ -14,9 +17,6 @@ const CarbonEmission = () => {
     lat: 0,
     lng: 0,
   });
-
-  const [originInput, setOriginInput] = useState();
-  const [destinyInput, setDestinyInput] = useState();
 
   const handleInputChange = async (serchInput, coordinatesSetting) => {
     try {

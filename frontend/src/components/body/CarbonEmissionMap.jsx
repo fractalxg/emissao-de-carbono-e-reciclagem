@@ -1,5 +1,4 @@
 import "./CarbonEmissionMap.css";
-import { useState, useEffect } from "react";
 import {
   APIProvider,
   Map,
@@ -27,7 +26,6 @@ const CarbonEmissionMap = ({ lat, lng }) => {
             />
           </AdvancedMarker>
         </Map>
-        
       </div>
     </APIProvider>
   );

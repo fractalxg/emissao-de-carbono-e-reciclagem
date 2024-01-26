@@ -13,8 +13,11 @@ server.use(
 const distanceRoute = require("./routes/Distance");
 server.use("/", distanceRoute);
 
-const latlonRoute = require("./routes/Coordinates");
-server.use("/", latlonRoute);
+const coordinates = require("./routes/Coordinates");
+server.use("/", coordinates);
+
+const placesuggestion = require("./routes/PlaceSuggestion");
+server.use("/", placesuggestion);
 
 server.listen(process.env.PORT, () => {
     console.log(`Server is running on port: ${process.env.PORT}`);
