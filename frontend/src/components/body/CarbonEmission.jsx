@@ -5,24 +5,29 @@ import { useState } from "react";
 import axios from "axios";
 
 const CarbonEmission = () => {
-  const [coordinates, setCoordinates] = useState({
-    lat: -23.5557714,
-    lng: -46.6395571,
+  const [originCoordinates, setOriginCoordinates] = useState({
+    lat: 0,
+    lng: 0,
   });
-  const [input, setInput] = useState()
 
-  const handleChange = async () => {
+  const [destinyCoordinates, setDestinyCoordinates] = useState({
+    lat: 0,
+    lng: 0,
+  });
+
+  const [originInput, setOriginInput] = useState();
+  const [destinyInput, setDestinyInput] = useState();
+
+  const handleInputChange = async (serchInput, coordinatesSetting) => {
     try {
-
       const response = await axios.post(import.meta.env.VITE_COORDINATES_API, {
-        address: input,
+        address: serchInput,
       });
 
-      setCoordinates({
+      coordinatesSetting({
         lat: response.data.lat,
         lng: response.data.lng,
       });
-
     } catch (error) {
       console.log(error);
     }
@@ -50,12 +55,18 @@ const CarbonEmission = () => {
           <input
             type="text"
             placeholder="Digite o endereço de origem"
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) =>
+              handleInputChange(e.target.value, setOriginCoordinates)
+            }
           ></input>
-          {/* <button onClick={() => handleChange()}>pesquisar</button> */}
-          {coordinates && (
-            <CarbonEmissionMap lat={coordinates.lat} lng={coordinates.lng} />
-          )}
+          <div className="carbon-emission-map">
+            {originCoordinates.lat !== 0 && originCoordinates.lng !== 0 && (
+              <CarbonEmissionMap
+                lat={originCoordinates.lat}
+                lng={originCoordinates.lng}
+              />
+            )}
+          </div>
         </div>
 
         <div className="carbon-emission-destiny-container">
@@ -63,8 +74,18 @@ const CarbonEmission = () => {
           <input
             type="text"
             placeholder="Digite o endereço de destino"
-            onChange={(e) => handleChange(e.target.value)}
+            onChange={(e) =>
+              handleInputChange(e.target.value, setDestinyCoordinates)
+            }
           ></input>
+          <div className="carbon-emission-map">
+            {destinyCoordinates.lat !== 0 && destinyCoordinates.lng !== 0 && (
+              <CarbonEmissionMap
+                lat={destinyCoordinates.lat}
+                lng={destinyCoordinates.lng}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

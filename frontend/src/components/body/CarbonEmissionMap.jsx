@@ -1,5 +1,5 @@
 import "./CarbonEmissionMap.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   APIProvider,
   Map,
@@ -9,9 +9,10 @@ import {
 
 const CarbonEmissionMap = ({ lat, lng }) => {
   const position = { lat: lat, lng: lng };
+
   return (
     <APIProvider apiKey={import.meta.env.VITE_GC_API_KEY}>
-      <div className="carbon-emissin-map-container">
+      <div className="carbon-emission-map-container">
         <Map
           zoom={9}
           center={position}
