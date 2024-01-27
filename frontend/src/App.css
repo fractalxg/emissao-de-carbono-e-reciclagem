@@ -6,6 +6,8 @@
 :root {
   --color-1: #8AF262;
   --color-2: #000000;
+  --color-3: #fff;
+  --color-4: #363538;
   --bg-1:url("./images/BG-01.png");
   --bg-2:url("./images/BG-02.png");
 }

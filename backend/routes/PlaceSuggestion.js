@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.use(express.json());
 
-router.post("/placesugestion", async (req, res) => {
+router.post("/placesuggestion", async (req, res) => {
   try {
     const data = req.body;
     const params = {

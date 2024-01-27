@@ -1,12 +1,16 @@
 import "./CarbonEmission.css";
 import ec_02_lg from "../../images/ec-02-lg.png";
 import CarbonEmissionMap from "./CarbonEmissionMap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import CarbonEmissionList from "./CarbonEmissionList";
 
 const CarbonEmission = () => {
   const [originInput, setOriginInput] = useState();
   const [destinyInput, setDestinyInput] = useState();
+  const [carbonEmissionListValues, setCarbonEmissionListValues] = useState();
+  const [searchedValue, setSearchedValue] = useState("");
+  //const [listVisibility, setListVisibility] = useState()
 
   const [originCoordinates, setOriginCoordinates] = useState({
     lat: 0,
@@ -18,20 +22,34 @@ const CarbonEmission = () => {
     lng: 0,
   });
 
-  const handleInputChange = async (serchInput, coordinatesSetting) => {
-    try {
-      const response = await axios.post(import.meta.env.VITE_COORDINATES_API, {
-        address: serchInput,
-      });
-
-      coordinatesSetting({
-        lat: response.data.lat,
-        lng: response.data.lng,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  // const handleInputChange = async (searchInput, coordinatesSetting) => {
+  const handleInputChange = async (searchInput, coordinatesSetting) => {
+      // try {
+      //   const response = await axios.post(import.meta.env.VITE_COORDINATES_API, {
+      //     address: searchedValue,
+      //   });
+  
+      //   coordinatesSetting({
+      //     lat: response.data.lat,
+      //     lng: response.data.lng,
+      //   });
+      // } catch (error) {
+      //   console.log(error);
+      // }
+      console.log(searchedValue.length)
+  
+    
+    // setListVisibility(true)
+    const response = await axios.post(
+      import.meta.env.VITE_PLACESUGGESTION_API,
+      {
+        input: searchInput,
+      }
+    );
+    const responseData = response.data;
+    setCarbonEmissionListValues(responseData);
   };
+
 
   return (
     <div className="carbon-emission-container" id="carbonEmission">
@@ -56,9 +74,16 @@ const CarbonEmission = () => {
             type="text"
             placeholder="Digite o endereço de origem"
             onChange={(e) =>
+              // handleInputChange(e.target.value, setOriginCoordinates)
               handleInputChange(e.target.value, setOriginCoordinates)
             }
           ></input>
+          {carbonEmissionListValues && (
+            <CarbonEmissionList
+              carbonEmissionListValues={carbonEmissionListValues}
+              setSearchedValue={setSearchedValue}
+            />
+          )}
           <div className="carbon-emission-map">
             {originCoordinates.lat !== 0 && originCoordinates.lng !== 0 && (
               <CarbonEmissionMap
@@ -78,6 +103,7 @@ const CarbonEmission = () => {
               handleInputChange(e.target.value, setDestinyCoordinates)
             }
           ></input>
+
           <div className="carbon-emission-map">
             {destinyCoordinates.lat !== 0 && destinyCoordinates.lng !== 0 && (
               <CarbonEmissionMap
