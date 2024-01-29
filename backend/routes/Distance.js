@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.use(express.json());
 
-router.get("/distance", async (req, res) => {
+router.post("/distance", async (req, res) => {
   try {
     const data = req.body;
     const params = {

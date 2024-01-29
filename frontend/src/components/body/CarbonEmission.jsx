@@ -11,6 +11,8 @@ const CarbonEmission = () => {
   const [carbonEmissionListValues, setCarbonEmissionListValues] = useState();
   const [originListVisibility, setOriginListVisibility] = useState();
   const [destinyListVisibility, setDestinyListVisibility] = useState();
+  const [addressDistance, setAddressDistance] = useState()
+  const [routeDuration, setRouteDuration] = useState()
 
   const [originCoordinates, setOriginCoordinates] = useState({
     lat: 0,
@@ -26,12 +28,11 @@ const CarbonEmission = () => {
     if (addressSetting === "origin") {
       setOriginListVisibility(true);
       setDestinyListVisibility(false);
-      inputClear("destiny-input")
-
+      inputClear("destiny-input");
     } else if (addressSetting === "destiny") {
       setDestinyListVisibility(true);
       setOriginListVisibility(false);
-      inputClear("origin-input")
+      inputClear("origin-input");
     }
 
     const response = await axios.post(
@@ -81,6 +82,23 @@ const CarbonEmission = () => {
     }
   };
 
+  const addressesDistanceCompare = async (originAddress, destinyAddress) => {
+    if (originAddress.length > 0 && destinyAddress.length > 0) {
+      const response = await axios.post(import.meta.env.VITE_DISTANCE_API, {
+        origin: originAddress,
+        destination: destinyAddress,
+      });
+      const responseData = response.data;
+      console.log(responseData);
+      setAddressDistance(responseData.distance)
+      setRouteDuration(responseData.duration)
+      setOriginAddress("");
+      setDestinyAddress("");
+
+      // console.log(`Origem: ${originAddress}, Destino: ${destinyAddress}`)
+    }
+  };
+
   useEffect(() => {
     handleAddressMap(
       originAddress,
@@ -100,6 +118,10 @@ const CarbonEmission = () => {
       "destiny-input"
     );
   }, [destinyAddress]);
+
+  useEffect(() => {
+    addressesDistanceCompare(originAddress, destinyAddress);
+  }, [originAddress, destinyAddress]);
 
   return (
     <div className="carbon-emission-container" id="carbonEmission">
