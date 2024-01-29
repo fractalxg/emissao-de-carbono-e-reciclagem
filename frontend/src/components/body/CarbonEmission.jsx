@@ -93,8 +93,8 @@ const CarbonEmission = () => {
       console.log(responseData);
       setAddressDistance(responseData.distance);
       setRouteDuration(responseData.duration);
-      // setOriginAddress("");
-      // setDestinyAddress("");
+      setOriginAddress("");
+      setDestinyAddress("");
 
       // console.log(`Origem: ${originAddress}, Destino: ${destinyAddress}`)
     }

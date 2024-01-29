@@ -13,7 +13,7 @@ const CarbonEmissionMap = ({ lat, lng }) => {
     <APIProvider apiKey={import.meta.env.VITE_GC_API_KEY}>
       <div className="carbon-emission-map-container">
         <Map
-          zoom={9}
+          zoom={7}
           center={position}
           mapId={import.meta.env.VITE_MAP_ID}
           disableDefaultUI={true}

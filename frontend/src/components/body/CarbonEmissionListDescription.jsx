@@ -8,7 +8,6 @@ const CarbonEmissionListDescription = ({ distance, duration }) => {
   const distanceToNumber = () => {
     const split = distance.split(" ");
     const distanceFormatted = split[0].replace(',', '')
-    console.log(distanceFormatted)
     return distanceFormatted;
   };
 
