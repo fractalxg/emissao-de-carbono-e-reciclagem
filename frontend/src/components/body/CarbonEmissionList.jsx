@@ -3,10 +3,13 @@ import { useState } from "react";
 
 const CarbonEmissionList = ({
   carbonEmissionListValues,
-  setSearchedValue,
+  setOriginAddress,
+  setDestinyAddress,
+  setListVisibility,
+  setOriginListVisibility,
+  setDestinyListVisibility,
+  addressOption
 }) => {
-  const [suggestion, setSuggestion] = useState();
-  const [listVisibility, setListVisibility] = useState(true)
 
   const boldText = (text) => {
     const formattedText = text;
@@ -28,14 +31,19 @@ const CarbonEmissionList = ({
   };
 
   const handleClick = (value) => {
-    setSearchedValue(value);
-    setListVisibility(false);
-    console.log(value);
+    if (addressOption === "origin") {
+      setOriginAddress(value)
+      setOriginListVisibility(false)
+    } else if (addressOption === "destiny"){
+      setDestinyAddress(value)
+      setDestinyListVisibility(false)
+    }
+    
   };
 
   return (
     <div className="carbon-emission-list-container">
-      {listVisibility &&
+      {
         carbonEmissionListValues.map((data, i) => (
           <div
             className="carbon-emission-list-content"

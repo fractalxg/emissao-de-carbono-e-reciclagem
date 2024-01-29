@@ -7,6 +7,8 @@
     font-size: 14px;
     border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+    position: absolute;
+    margin-top: 47px;
 }
 
 .carbon-emission-list-content{

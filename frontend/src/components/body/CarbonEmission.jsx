@@ -1,16 +1,17 @@
 import "./CarbonEmission.css";
 import ec_02_lg from "../../images/ec-02-lg.png";
 import CarbonEmissionMap from "./CarbonEmissionMap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import CarbonEmissionList from "./CarbonEmissionList";
 
 const CarbonEmission = () => {
-  const [originInput, setOriginInput] = useState();
-  const [destinyInput, setDestinyInput] = useState();
+  const [originAddress, setOriginAddress] = useState("");
+  const [destinyAddress, setDestinyAddress] = useState("");
   const [carbonEmissionListValues, setCarbonEmissionListValues] = useState();
-  const [searchedValue, setSearchedValue] = useState("");
-  //const [listVisibility, setListVisibility] = useState()
+  const [originListVisibility, setOriginListVisibility] = useState();
+  const [destinyListVisibility, setDestinyListVisibility] = useState();
+  const ref = useRef({});
 
   const [originCoordinates, setOriginCoordinates] = useState({
     lat: 0,
@@ -22,24 +23,13 @@ const CarbonEmission = () => {
     lng: 0,
   });
 
-  // const handleInputChange = async (searchInput, coordinatesSetting) => {
-  const handleInputChange = async (searchInput, coordinatesSetting) => {
-      // try {
-      //   const response = await axios.post(import.meta.env.VITE_COORDINATES_API, {
-      //     address: searchedValue,
-      //   });
-  
-      //   coordinatesSetting({
-      //     lat: response.data.lat,
-      //     lng: response.data.lng,
-      //   });
-      // } catch (error) {
-      //   console.log(error);
-      // }
-      console.log(searchedValue.length)
-  
-    
-    // setListVisibility(true)
+  const handleInputChange = async (searchInput, addressSetting) => {
+    if (addressSetting === "origin") {
+      setOriginListVisibility(true);
+    } else if (addressSetting === "destiny") {
+      setDestinyListVisibility(true);
+    }
+
     const response = await axios.post(
       import.meta.env.VITE_PLACESUGGESTION_API,
       {
@@ -50,6 +40,62 @@ const CarbonEmission = () => {
     setCarbonEmissionListValues(responseData);
   };
 
+  const handleAddressMap = async (
+    value,
+    setValue,
+    setCoordinates,
+    setVisibility,
+    inputName
+  ) => {
+    if (value.length > 0) {
+      try {
+        const response = await axios.post(
+          import.meta.env.VITE_COORDINATES_API,
+          {
+            address: value,
+          }
+        );
+
+        setCoordinates({
+          lat: response.data.lat,
+          lng: response.data.lng,
+        });
+        setValue("");
+        setCarbonEmissionListValues(null);
+        setVisibility(false);
+        inputClear(inputName);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const inputClear = (inputName) => {
+    const inputElement = document.querySelector(`.${inputName}`);
+    if (inputElement) {
+      inputElement.value = "";
+    }
+  };
+
+  useEffect(() => {
+    handleAddressMap(
+      originAddress,
+      setOriginAddress,
+      setOriginCoordinates,
+      setOriginListVisibility,
+      "origin-input"
+    );
+  }, [originAddress]);
+
+  useEffect(() => {
+    handleAddressMap(
+      destinyAddress,
+      setDestinyAddress,
+      setDestinyCoordinates,
+      setDestinyListVisibility,
+      "destiny-input"
+    );
+  }, [destinyAddress]);
 
   return (
     <div className="carbon-emission-container" id="carbonEmission">
@@ -66,51 +112,62 @@ const CarbonEmission = () => {
           <img src={ec_02_lg} />
         </div>
       </div>
-      <div className="carbon-emission-calculator">
+      <div ref={ref} className="carbon-emission-calculator">
         <div className="carbon-emission-origin-container">
           <label>Origem:</label>
 
           <input
+            className="origin-input"
             type="text"
             placeholder="Digite o endereço de origem"
-            onChange={(e) =>
-              // handleInputChange(e.target.value, setOriginCoordinates)
-              handleInputChange(e.target.value, setOriginCoordinates)
-            }
+            onChange={(e) => handleInputChange(e.target.value, "origin")}
           ></input>
-          {carbonEmissionListValues && (
+          {originListVisibility && carbonEmissionListValues && (
             <CarbonEmissionList
               carbonEmissionListValues={carbonEmissionListValues}
-              setSearchedValue={setSearchedValue}
+              setOriginAddress={setOriginAddress}
+              setOriginListVisibility={setOriginListVisibility}
+              addressOption={"origin"}
             />
           )}
           <div className="carbon-emission-map">
-            {originCoordinates.lat !== 0 && originCoordinates.lng !== 0 && (
-              <CarbonEmissionMap
-                lat={originCoordinates.lat}
-                lng={originCoordinates.lng}
-              />
-            )}
+            {!originListVisibility &&
+              originCoordinates.lat !== 0 &&
+              originCoordinates.lng !== 0 && (
+                <CarbonEmissionMap
+                  lat={originCoordinates.lat}
+                  lng={originCoordinates.lng}
+                />
+              )}
           </div>
         </div>
 
         <div className="carbon-emission-destiny-container">
           <label>Destino:</label>
           <input
+            className="destiny-input"
             type="text"
             placeholder="Digite o endereço de destino"
-            onChange={(e) =>
-              handleInputChange(e.target.value, setDestinyCoordinates)
-            }
+            onChange={(e) => handleInputChange(e.target.value, "destiny")}
           ></input>
+          {destinyListVisibility && carbonEmissionListValues && (
+            <CarbonEmissionList
+              carbonEmissionListValues={carbonEmissionListValues}
+              setDestinyAddress={setDestinyAddress}
+              setDestinyListVisibility={setDestinyListVisibility}
+              addressOption={"destiny"}
+            />
+          )}
 
           <div className="carbon-emission-map">
-            {destinyCoordinates.lat !== 0 && destinyCoordinates.lng !== 0 && (
-              <CarbonEmissionMap
-                lat={destinyCoordinates.lat}
-                lng={destinyCoordinates.lng}
-              />
-            )}
+            {!destinyListVisibility &&
+              destinyCoordinates.lat !== 0 &&
+              destinyCoordinates.lng !== 0 && (
+                <CarbonEmissionMap
+                  lat={destinyCoordinates.lat}
+                  lng={destinyCoordinates.lng}
+                />
+              )}
           </div>
         </div>
       </div>
