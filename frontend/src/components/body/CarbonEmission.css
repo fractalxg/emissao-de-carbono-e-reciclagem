@@ -41,11 +41,10 @@
 }
 
 .carbon-emission-calculator {
-  padding-top: 80px;
+  padding-top: 50px;
   display: flex;
   justify-content: center;
-  padding-top: 10vh;
-  gap: 20vw;
+  gap: 50px
 }
 
 .carbon-emission-origin-container {

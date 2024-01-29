@@ -1,6 +1,7 @@
 .carbon-emission-list-description-container{
 
     width: 100%;
+    padding-top: 50px;
 }
 
 .carbon-emission-list-description-content{
@@ -28,4 +29,5 @@
     font-weight: 600;
     color: var(--color-2);
     background-color: var(--color-5);
+    gap: 10px;
 }
