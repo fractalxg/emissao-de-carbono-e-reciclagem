@@ -1,11 +1,9 @@
 import "./CarbonEmissionList.css";
-import { useState } from "react";
 
 const CarbonEmissionList = ({
   carbonEmissionListValues,
   setOriginAddress,
   setDestinyAddress,
-  setListVisibility,
   setOriginListVisibility,
   setDestinyListVisibility,
   addressOption

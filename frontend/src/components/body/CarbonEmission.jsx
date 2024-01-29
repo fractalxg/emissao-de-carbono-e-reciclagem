@@ -4,6 +4,7 @@ import CarbonEmissionMap from "./CarbonEmissionMap";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CarbonEmissionList from "./CarbonEmissionList";
+import CarbonEmissionListDescription from "./CarbonEmissionListDescription";
 
 const CarbonEmission = () => {
   const [originAddress, setOriginAddress] = useState("");
@@ -11,8 +12,8 @@ const CarbonEmission = () => {
   const [carbonEmissionListValues, setCarbonEmissionListValues] = useState();
   const [originListVisibility, setOriginListVisibility] = useState();
   const [destinyListVisibility, setDestinyListVisibility] = useState();
-  const [addressDistance, setAddressDistance] = useState()
-  const [routeDuration, setRouteDuration] = useState()
+  const [addressDistance, setAddressDistance] = useState("");
+  const [routeDuration, setRouteDuration] = useState("");
 
   const [originCoordinates, setOriginCoordinates] = useState({
     lat: 0,
@@ -90,10 +91,10 @@ const CarbonEmission = () => {
       });
       const responseData = response.data;
       console.log(responseData);
-      setAddressDistance(responseData.distance)
-      setRouteDuration(responseData.duration)
-      setOriginAddress("");
-      setDestinyAddress("");
+      setAddressDistance(responseData.distance);
+      setRouteDuration(responseData.duration);
+      // setOriginAddress("");
+      // setDestinyAddress("");
 
       // console.log(`Origem: ${originAddress}, Destino: ${destinyAddress}`)
     }
@@ -197,6 +198,9 @@ const CarbonEmission = () => {
           </div>
         </div>
       </div>
+      {addressDistance.length > 0 && routeDuration.length > 0 && (
+        <CarbonEmissionListDescription distance={addressDistance} duration={routeDuration}/>
+      )}
     </div>
   );
 };
