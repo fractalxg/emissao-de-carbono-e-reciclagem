@@ -20,8 +20,6 @@ router.get("/distance", async (req, res) => {
     const responseData = response.data;
 
     const distanceInformations = {
-      origin: responseData.origin_addresses,
-      destination: responseData.destination_addresses,
       distance: responseData.rows[0].elements[0].distance.text,
       duration: responseData.rows[0].elements[0].duration.text,
     };
