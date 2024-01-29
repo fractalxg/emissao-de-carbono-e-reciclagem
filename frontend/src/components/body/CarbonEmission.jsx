@@ -1,7 +1,7 @@
 import "./CarbonEmission.css";
 import ec_02_lg from "../../images/ec-02-lg.png";
 import CarbonEmissionMap from "./CarbonEmissionMap";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import CarbonEmissionList from "./CarbonEmissionList";
 
@@ -11,7 +11,6 @@ const CarbonEmission = () => {
   const [carbonEmissionListValues, setCarbonEmissionListValues] = useState();
   const [originListVisibility, setOriginListVisibility] = useState();
   const [destinyListVisibility, setDestinyListVisibility] = useState();
-  const ref = useRef({});
 
   const [originCoordinates, setOriginCoordinates] = useState({
     lat: 0,
@@ -26,8 +25,13 @@ const CarbonEmission = () => {
   const handleInputChange = async (searchInput, addressSetting) => {
     if (addressSetting === "origin") {
       setOriginListVisibility(true);
+      setDestinyListVisibility(false);
+      inputClear("destiny-input")
+
     } else if (addressSetting === "destiny") {
       setDestinyListVisibility(true);
+      setOriginListVisibility(false);
+      inputClear("origin-input")
     }
 
     const response = await axios.post(
@@ -60,7 +64,7 @@ const CarbonEmission = () => {
           lat: response.data.lat,
           lng: response.data.lng,
         });
-        setValue("");
+        //setValue("");
         setCarbonEmissionListValues(null);
         setVisibility(false);
         inputClear(inputName);
@@ -112,7 +116,7 @@ const CarbonEmission = () => {
           <img src={ec_02_lg} />
         </div>
       </div>
-      <div ref={ref} className="carbon-emission-calculator">
+      <div className="carbon-emission-calculator">
         <div className="carbon-emission-origin-container">
           <label>Origem:</label>
 
