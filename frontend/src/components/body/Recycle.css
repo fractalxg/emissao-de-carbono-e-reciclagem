@@ -52,4 +52,33 @@
     margin-right: 60px;
     text-align: justify;
     margin-top: 60px;
+    padding-bottom: 50px;
 }
+
+@media screen and (max-width: 750px) {
+    .recycle-container {
+      margin-top: 150px;
+    }
+    .recycle-image img{
+        width: 180px;
+        height: 190px;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .recycle-image-02 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+      .recycle-image img{
+          width: 120px;
+          height: 120px;
+      }
+      .recycle-text-content {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+}
+

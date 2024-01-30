@@ -74,3 +74,29 @@
 .sustainable-solar-energy-text-content {
   margin-top: 60px;
 }
+
+@media screen and (max-width: 630px) {
+  .sustainable-energy-image img {
+    width: 180px;
+    height: 190px;
+  }
+  .sustainable-solar-energy-image img {
+    width: 180px;
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .sustainable-energy-image img {
+    width: 140px;
+    height: 150px;
+  }
+  .sustainable-solar-energy-image img {
+    width: 140px;
+    height: 150px;
+  }
+  .sustainable-energy-text-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

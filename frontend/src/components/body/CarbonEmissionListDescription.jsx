@@ -45,7 +45,7 @@ const CarbonEmissionListDescription = ({ distance, duration }) => {
             isEletric={isEletric}
             setIsEletric={setIsEletric}
           />
-          {carbonCalculation()}
+          <p>{carbonCalculation()}</p>
         </div>
       </div>
     </div>
