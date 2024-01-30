@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import CarbonEmissionList from "./CarbonEmissionList";
 import CarbonEmissionListDescription from "./CarbonEmissionListDescription";
+import { RevealBar, RevealY } from "../utils/Animation";
 
 const CarbonEmission = () => {
   const [originAddress, setOriginAddress] = useState("");
@@ -161,10 +162,12 @@ const CarbonEmission = () => {
             {!originListVisibility &&
               originCoordinates.lat !== 0 &&
               originCoordinates.lng !== 0 && (
-                <CarbonEmissionMap
-                  lat={originCoordinates.lat}
-                  lng={originCoordinates.lng}
-                />
+                <RevealBar delay={0}>
+                  <CarbonEmissionMap
+                    lat={originCoordinates.lat}
+                    lng={originCoordinates.lng}
+                  />
+                </RevealBar>
               )}
           </div>
         </div>
@@ -190,16 +193,23 @@ const CarbonEmission = () => {
             {!destinyListVisibility &&
               destinyCoordinates.lat !== 0 &&
               destinyCoordinates.lng !== 0 && (
-                <CarbonEmissionMap
-                  lat={destinyCoordinates.lat}
-                  lng={destinyCoordinates.lng}
-                />
+                <RevealBar delay={0}>
+                  <CarbonEmissionMap
+                    lat={destinyCoordinates.lat}
+                    lng={destinyCoordinates.lng}
+                  />
+                </RevealBar>
               )}
           </div>
         </div>
       </div>
       {addressDistance.length > 0 && routeDuration.length > 0 && (
-        <CarbonEmissionListDescription distance={addressDistance} duration={routeDuration}/>
+        <RevealY translateY={50} >
+          <CarbonEmissionListDescription
+            distance={addressDistance}
+            duration={routeDuration}
+          />
+        </RevealY>
       )}
     </div>
   );
