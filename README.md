@@ -12,5 +12,10 @@ Aplicação Web em ReactJS e NodeJS (REST API + Express) para pesquisa sobre Sus
 ## Screenshots
 * Web
   
-![Sustentabilidade - Web](https://github.com/fractalxg/portfolio-sustentabilidade/assets/147837025/d4706b2e-f009-472e-a646-f1c29c8bb19f)
+![Sustentabilidade - Web](https://github.com/fractalxg/portfolio-sustentabilidade/assets/147837025/481ed661-7598-43f5-82c8-db0176785817)
+
+* Mobile
+  
+![Sustentabilidade - Mobile](https://github.com/fractalxg/portfolio-sustentabilidade/assets/147837025/042d6182-f88a-4946-836d-3249145cf278)
+
 
