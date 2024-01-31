@@ -1,0 +1,38 @@
+.carbon-emission-list-description-container{
+    width: 100%;
+    padding-top: 50px;
+    
+}
+
+.carbon-emission-list-description-content{
+    display: grid; 
+    margin-left: 60px;
+    margin-right: 60px;
+}
+.carbon-emission-list-description-content-title{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    background-color: var(--color-4);
+    padding-left: 30px;
+    font-weight: 600;
+    color: var(--color-1);
+    
+}
+.carbon-emission-list-description-content-information{
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    height: 60px;
+    font-weight: 600;
+    color: var(--color-2);
+    background-color: var(--color-5);
+    gap: 10px;
+}
+
+@media screen and (max-width: 630px) {
+    .carbon-emission-list-description-content p{
+      font-size: 12px;
+  }
+}

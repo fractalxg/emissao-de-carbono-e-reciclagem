@@ -1,0 +1,23 @@
+.carbon-emission-map-container {
+  margin-top: 10px;
+  height: 150px;
+  width: 300px;
+}
+
+a[href^="http://maps.google.com/maps"]
+{
+  display: none !important;
+}
+a[href^="https://maps.google.com/maps"]
+{
+  display: none !important;
+}
+
+.gmnoprint a,
+.gmnoprint span,
+.gm-style-cc {
+  display: none;
+}
+.gmnoprint div {
+  background: none !important;
+}

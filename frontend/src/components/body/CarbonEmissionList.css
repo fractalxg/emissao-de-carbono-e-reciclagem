@@ -1,0 +1,25 @@
+.carbon-emission-list-container {
+  display: grid;
+  width: 300px;
+  max-height: 200px;
+  background-color: #fff;
+  overflow-y: scroll;
+  font-size: 14px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  position: absolute;
+  margin-top: 47px;
+}
+
+.carbon-emission-list-content {
+  padding: 15px;
+}
+
+.carbon-emission-list-content:hover {
+  cursor: pointer;
+  background-color: var(--color-4);
+  color: var(--color-3);
+}
+
+
+
