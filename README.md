@@ -1,4 +1,3 @@
-(em construção)
 ## Descrição
 Aplicação Web em ReactJS e NodeJS (REST API + Express) para pesquisa sobre Sustentabilidade (Energia Sustentável, Emissão de Carbono e Reciclagem).
 
