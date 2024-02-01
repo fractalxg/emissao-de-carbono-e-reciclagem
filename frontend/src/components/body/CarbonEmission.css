@@ -1,5 +1,4 @@
 .carbon-emission-container {
-  height: 100vh;
   margin-top: 100px;
 }
 
@@ -41,7 +40,7 @@
 }
 
 .carbon-emission-calculator {
-  padding-top: 50px;
+  margin-top: 150px;
   display: flex;
   justify-content: center;
   gap: 50px

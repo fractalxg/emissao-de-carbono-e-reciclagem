@@ -1,3 +1,4 @@
+import Footer from "../footer/Footer"
 import "./Body.css"
 import CarbonEmission from "./CarbonEmission"
 import Presentation from "./Presentation"
