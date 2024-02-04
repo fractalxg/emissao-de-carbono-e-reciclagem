@@ -29,7 +29,6 @@ router.post("/placesuggestion", async (req, res) => {
         };
       })
     );
-
   } catch (error) {
     console.error("Error fetching data from Google Cloud API.", error);
     res.status(500).send("Error fetching data from Google Cloud API.", error);

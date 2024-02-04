@@ -6,10 +6,10 @@ router.use(express.json());
 
 router.post("/distance", async (req, res) => {
   try {
-    const data = req.body;
+    const { origin, destination } = req.body;
     const params = {
-      origins: data.origin,
-      destinations: data.destination,
+      origins: origin,
+      destinations: destination,
       units: "metric",
       key: process.env.GC_API_KEY,
     };
